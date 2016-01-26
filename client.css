@@ -1,0 +1,55 @@
+#mainContent {
+    align: center;
+    padding: 100px;
+    width: 600px;
+    height: 400px;
+    background-color: aqua;
+    margin: auto;
+}
+
+#logoSlogan {
+    width: 340px;
+    height: 400px;
+    background-image: url("wimage.png");
+    margin-right: 10px;
+    float: left;
+
+}
+
+#login {
+    width: 250px;
+    height: 100px;
+    background-color: white;
+    float: right;
+}
+
+#signUp {
+    width: 250px;
+    margin-top: 10px;
+    height: 290px;
+    background-color: pink;
+    float: right;
+    clear: right;
+}
+
+form{
+    margin-top: 10px;
+
+}
+
+span{
+    font-size: 10px;
+}
+
+input{
+    float:right;
+    clear: right;
+}
+
+select{
+    float: right;
+    clear: right;
+}
+h4{
+    text-align: center;
+}
