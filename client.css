@@ -16,40 +16,36 @@
 
 }
 
-#login {
+div#login {
     width: 250px;
-    height: 100px;
+    height: 110px;
+    font-size: 12px;
+    float: right;
     background-color: white;
-    float: right;
 }
 
-#signUp {
+div#signUp {
+    font-size: 12px;
     width: 250px;
+    height: 280px;
     margin-top: 10px;
-    height: 290px;
-    background-color: pink;
     float: right;
-    clear: right;
+    background-color: white;
 }
 
-form{
-    margin-top: 10px;
-
+form#loginForm label, form#signUpForm label {
+    display: inline-block;
+    width: 150px;
+    float: left;
 }
 
-span{
-    font-size: 10px;
-}
-
-input{
-    float:right;
-    clear: right;
-}
-
-select{
+#subButton, #logButton, input, select {
     float: right;
-    clear: right;
+    clear: both;
 }
-h4{
+
+h4 {
     text-align: center;
+    font-size: 15px;
 }
+
