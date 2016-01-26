@@ -9,7 +9,7 @@
 #logoSlogan {
     width: 340px;
     height: 400px;
-    background-image: url("img/wimage.png");
+    background-image: url("wimage.png");
     margin-right: 10px;
     float: left;
 
