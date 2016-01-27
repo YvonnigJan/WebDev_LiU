@@ -1,3 +1,9 @@
+/**
+ * Authors:
+ * Cindy Najjar
+ * Jan Yvonnig
+ */
+ 
 body {
     background-color: blue;
 }
@@ -84,6 +90,19 @@ input {
 #forms {
     position: absolute;
     margin-left: 350px;
+}
+
+#displayMsg {
+    width: auto;
+    height: auto;
+    overflow: auto;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    position: absolute;
+    margin-top: -40px;
+    margin-left: 500px;
 }
 
 p {
