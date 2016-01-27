@@ -1,8 +1,11 @@
+body {
+    background-color: blue;
+}
+
 #mainContent {
     padding: 100px;
     width: 600px;
     height: 400px;
-    background-color: aqua;
     margin: auto;
 }
 

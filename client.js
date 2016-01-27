@@ -3,9 +3,9 @@
  */
 
 displayView = function() {
-
+		document.getElementById("welcome").innerHTML = document.getElementById("welcomeview").innerHTML;
 };
 
 window.onload = function() {
-    window.alert("Hello TDDD97 ");
+	displayView();
 };
