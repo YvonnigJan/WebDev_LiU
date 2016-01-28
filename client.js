@@ -7,7 +7,11 @@
 var sizeMinPwd = 6;
 
 displayView = function() {
+	if (localStorage.getItem("token") == null) {
 		document.getElementById("page").innerHTML = document.getElementById("welcomeview").innerHTML;
+	} else {
+		document.getElementById("page").innerHTML = document.getElementById("profileview").innerHTML;
+	}
 };
 
 window.onload = function() {
@@ -15,17 +19,24 @@ window.onload = function() {
 };
 
 logIn = function() {
-	//var pwd1 = document.forms["loginForm"]["password"];
-	//lengthPwd(pwd1);
+	var username = document.getElementById("emailLog").value;
+	var password = document.getElementById("passwordLog").value;
+	if (password.length >= sizeMinPwd) {
+		var servStubLog = serverstub.signIn(username, password);
+		if (servStubLog.success == true) {
+			localStorage.setItem("token", servStubLog.data);
+			location.reload();
+		} else {
+			displayMsg(servStubLog.message, false);
+		}
+	} else {
+		displayMsg("Username or password is incorrect",false);
+	}
 };
 
 signUp = function() {
-
 	var genderSelected = "male";
-
 	if (document.getElementById("female").selected == true) {genderSelected = "female";}
-
-	var repeatPwd = document.forms["signUpForm"]["repeatPassword"];
 
 	var newUser = {
 		'email': document.getElementById("emailSign").value,
