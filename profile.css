@@ -1,0 +1,33 @@
+#tabsContainer {
+    position: relative;
+    margin-left: 35%;
+}
+
+#panel {
+    position: relative;
+    margin-left: 35%;
+    border: 1px solid black;
+    padding: 0px;
+    width: auto;
+    height: auto;
+    display: inline-block;
+}
+
+ul {
+    list-style-type: none;
+    border: 1px solid black;
+    padding: 0px;
+    width: auto;
+    height: auto;
+    display: inline-block;
+}
+
+#tabsContainer ul li {
+    display: inline;
+    float: left;
+    height:auto;
+    min-width:80px;
+    margin: 0px;
+    padding: 10px;
+    border: 1px solid;
+}
