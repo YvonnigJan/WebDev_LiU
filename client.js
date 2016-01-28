@@ -58,15 +58,6 @@ signUp = function() {
 	}
 };
 
-/** checkPwds = function(pw1, pw2) {
-	return (pw1.value == pw2.value);
-}; **/
-
-/**lengthPwd = function(pwd) {
-	return (pwd.value.length < sizeMinPwd);
-};
-*/
-
 /* message (string) : the message to be shown
 success (boolean) */
 displayMsg = function(message,success) {
