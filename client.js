@@ -1,5 +1,7 @@
-/**
- * Created by cinna259 on 26/01/16.
+/*
+ * Authors:
+ * Cindy Najjar
+ * Jan Yvonnig
  */
 
 var sizeMinPwd = 6;
@@ -13,51 +15,61 @@ window.onload = function() {
 };
 
 logIn = function() {
-	var pwd1 = document.forms["loginForm"]["password"];
-	lengthPwd(pwd1);
+	//var pwd1 = document.forms["loginForm"]["password"];
+	//lengthPwd(pwd1);
 };
 
 signUp = function() {
-	var pwd2 = document.forms["signUpForm"]["password"];
+
+	var genderSelected = "male";
+
+	if (document.getElementById("female").selected == true) {genderSelected = "female";}
+
 	var repeatPwd = document.forms["signUpForm"]["repeatPassword"];
 
-	//lengthPwd(pwd2);
-	checkPwds(pwd2,repeatPassword);
-};
+	var newUser = {
+		'email': document.getElementById("emailSign").value,
+		'password': document.getElementById("passwordSign").value,
+		'firstname': document.getElementById("firstName").value,
+		'familyname': document.getElementById("familyName").value,
+		'gender': genderSelected,
+		'city': document.getElementById("city").value,
+		'country': document.getElementById("country").value,
+	};
 
-checkPwds = function(pw1, pw2) {
-	if (pw1.value != pw2.value) {
-		displayMsg("Error: both passwords must be identical","error");
-	} else {
-		displayMsg("","success");
+	if (!(newUser.password.length < sizeMinPwd) && (newUser.password == document.getElementById("repeatPassword").value)) {
+		var servStubSign = serverstub.signUp(newUser);
+		displayMsg(servStubSign.message,true);
+	} else if (newUser.password != document.getElementById("repeatPassword").value) {
+		displayMsg("Error: both passwords must be identical", false);
+	} else if (newUser.password.length < sizeMinPwd) {
+		displayMsg("Error: password must be at least 6 characters long", false);
 	}
 };
 
-lengthPwd = function(pw) {
-	if (pw.value.length < sizeMinPwd) {
-		displayMsg("Password must be at least 6 characters long !","error");
-	} else {
-		displayMsg("","success");
-	}
+/** checkPwds = function(pw1, pw2) {
+	return (pw1.value == pw2.value);
+}; **/
 
-}
+/**lengthPwd = function(pwd) {
+	return (pwd.value.length < sizeMinPwd);
+};
+*/
 
-/* message : the message to be shown
-state : error or success */
-displayMsg = function(message,state) {
+/* message (string) : the message to be shown
+success (boolean) */
+displayMsg = function(message,success) {
 
 	var errFrame = document.getElementById("displayMsg");
 
 	errFrame.innerHTML = message;
+	errFrame.style.backgroundColor = "white";
 	
-	if (state == "error") {
+	if (success == false) {
 		errFrame.style.border = "1px solid red";
-		errFrame.style.backgroundColor = "white";
 	}
 		
-	else if (state == "success") {
-		errFrame.style.border = "";
-		errFrame.style.backgroundColor = "";
+	else if (success == true) {
+		errFrame.style.border = "1px solid black";
 	}
-
 };
