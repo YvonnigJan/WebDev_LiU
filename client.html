@@ -52,7 +52,31 @@
     	</script>
 
     	<script id="profileview" type="text/view">
-    		<h1>PROFILE VIEW</h1>
+    		<div id="tabsContainer">
+
+			    <ul>
+
+			        <li>
+			            <label id="home" onClick="tabClicked('home')">Home</label>
+			        </li>
+
+			        <li>
+			            <label id="browse" onClick="tabClicked('browse')">Browse</label>
+			        </li>
+
+			        <li>
+			            <label id="account" onClick="tabClicked('account')">Account</label>
+			        </li>
+
+			    </ul>
+
+			</div>
+
+			<div id="panel">
+			    <div id="home-panel">Home panel</div>
+			    <div id="browse-panel">Browse panel</div>
+			    <div id="account-panel">Account panel</div>
+			</div>
     	</script>
 </head>
 

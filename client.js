@@ -75,3 +75,20 @@ displayMsg = function(message,success) {
 		errFrame.style.border = "1px solid black";
 	}
 };
+
+/* displays the panel of the tab parameter */
+tabClicked = function(tab) {
+	if (tab == 'home') {
+		document.getElementById("home-panel").style.display = "block";
+		document.getElementById("account-panel").style.display = "none";
+		document.getElementById("browse-panel").style.display = "none";
+	} else if (tab == 'account') {
+		document.getElementById("account-panel").style.display = "block";
+		document.getElementById("home-panel").style.display = "none";
+		document.getElementById("browse-panel").style.display = "none";
+	} else if (tab == 'browse') {
+		document.getElementById("browse-panel").style.display = "block";
+		document.getElementById("account-panel").style.display = "none";
+		document.getElementById("home-panel").style.display = "none";
+	}
+};
