@@ -27,10 +27,10 @@ logIn = function() {
 			localStorage.setItem("token", servStubLog.data);
 			location.reload();
 		} else {
-			displayMsg(servStubLog.message, false);
+			displayMsg(servStubLog.message, false, "welcomeview");
 		}
 	} else {
-		displayMsg("Username or password is incorrect",false);
+		displayMsg("Username or password is incorrect",false,"welcomeview");
 	}
 };
 
@@ -50,19 +50,23 @@ signUp = function() {
 
 	if (!(newUser.password.length < sizeMinPwd) && (newUser.password == document.getElementById("repeatPassword").value)) {
 		var servStubSign = serverstub.signUp(newUser);
-		displayMsg(servStubSign.message,true);
+		displayMsg(servStubSign.message,true,"welcomeview");
 	} else if (newUser.password != document.getElementById("repeatPassword").value) {
-		displayMsg("Error: both passwords must be identical", false);
+		displayMsg("Error: both passwords must be identical", false, "welcomeview");
 	} else if (newUser.password.length < sizeMinPwd) {
-		displayMsg("Error: password must be at least 6 characters long", false);
+		displayMsg("Error: password must be at least 6 characters long", false, "welcomeview");
 	}
 };
 
 /* message (string) : the message to be shown
 success (boolean) */
-displayMsg = function(message,success) {
+displayMsg = function(message,success,view) {
 
 	var errFrame = document.getElementById("displayMsg");
+	
+	if (view == "profileview") {
+		errFrame = document.getElementById("displayMsgProfile");
+	}
 
 	errFrame.innerHTML = message;
 	errFrame.style.backgroundColor = "white";
@@ -90,5 +94,19 @@ tabClicked = function(tab) {
 		document.getElementById("browse-panel").style.display = "block";
 		document.getElementById("account-panel").style.display = "none";
 		document.getElementById("home-panel").style.display = "none";
+	}
+};
+
+/* enables a user to change his password */
+changePwd = function() {
+	var token = localStorage.getItem("token");
+	var oldPassword = document.getElementById("oldPwd").value;
+	var newPassword = document.getElementById("chgPwd").value;
+
+	if (newPassword.length >= sizeMinPwd) {
+		var servStubChg = serverstub.changePassword(token, oldPassword, newPassword);
+		displayMsg(servStubChg.message, true, "profileview");
+	} else {
+		displayMsg("Error: password must be at least 6 characters long", false, "profileview");
 	}
 };

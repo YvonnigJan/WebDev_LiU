@@ -53,10 +53,10 @@
 
     	<script id="profileview" type="text/view">
     		<div id="tabsContainer">
+    			<div id="displayMsgProfile"></div>
 
-			    <ul>
-
-			        <li>
+    			<ul>
+    				<li>
 			            <label id="home" onClick="tabClicked('home')">Home</label>
 			        </li>
 
@@ -67,15 +67,20 @@
 			        <li>
 			            <label id="account" onClick="tabClicked('account')">Account</label>
 			        </li>
-
 			    </ul>
-
 			</div>
 
 			<div id="panel">
 			    <div id="home-panel">Home panel</div>
 			    <div id="browse-panel">Browse panel</div>
-			    <div id="account-panel">Account panel</div>
+
+			    <div id="account-panel">
+			    	<form id="changePwdForm" onsubmit="changePwd(); return false;" method="post">
+			    		<p>Change your password :</p>
+			    		<label for="oldPwd-label">Current password</label><input type="password" id="oldPwd" name="oldPwd" required><br />
+			    		<label for="chgPwd-label">Change your password</label><input type="password" id="chgPwd" name="chgPwd" required><br/>
+			    		<input id="chgButton" type="submit" value="Change now!">
+			    </div>
 			</div>
     	</script>
 </head>
