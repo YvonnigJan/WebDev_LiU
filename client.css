@@ -171,7 +171,7 @@ ul {
     float: left;
     text-align: left;
     font-size: 13px;
-    padding-top: 15px;
+    padding-top: 5px;
 }
 
 #oldPwd, #chgPwd { 
@@ -188,6 +188,19 @@ ul {
     height: auto;
 }
 
+#logOutButton {
+    position: relative;
+    margin-top: 135px;
+    text-align: center;
+    padding: 15px;
+    width: 365px;
+    height: auto;
+    font-weight: bold;
+    color: black;
+    border: 1px solid red;
+    border-radius: 10px
+}
+
 #displayMsgProfile {
     width: auto;
     height: auto;
@@ -199,4 +212,11 @@ ul {
     position: absolute;
     margin-top: -20px;
     margin-left: 697px;
+}
+
+#changePwd {
+    text-align: left;
+    font-style: italic;
+    font-size: 15px;
+    font-weight: bold;
 }

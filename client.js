@@ -34,6 +34,18 @@ logIn = function() {
 	}
 };
 
+logOut = function() {
+	var token = localStorage.getItem("token");
+
+	if (token != null) {
+		var servStubLogOut = serverstub.signOut(token);
+		localStorage.removeItem("token");
+	}
+
+	//to display the welcome page after the user signs out
+	location.reload();
+};
+
 signUp = function() {
 	var genderSelected = "male";
 	if (document.getElementById("female").selected == true) {genderSelected = "female";}

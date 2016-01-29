@@ -76,10 +76,11 @@
 
 			    <div id="account-panel">
 			    	<form id="changePwdForm" onsubmit="changePwd(); return false;" method="post">
-			    		<p>Change your password :</p>
+			    		<p id="changePwd">Change your password</p>
 			    		<label for="oldPwd-label">Current password</label><input type="password" id="oldPwd" name="oldPwd" required><br />
 			    		<label for="chgPwd-label">Change your password</label><input type="password" id="chgPwd" name="chgPwd" required><br/>
 			    		<input id="chgButton" type="submit" value="Change now!">
+			    		<input id="logOutButton" type="submit" value="LOG OUT" onClick="logOut()">
 			    </div>
 			</div>
     	</script>
