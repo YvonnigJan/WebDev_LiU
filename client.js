@@ -163,6 +163,7 @@ msgOnWall = function() {
     if ((msg.length <= maxSizeMsg) && (msg.length > 0)) {
         var servStubData = serverstub.getUserDataByToken(token);
     	if (servStubData.success == true) {
+    		//User data is retrieved :-)
             send(msg, servStubData.data.email, false);
             displayMsg(servStubData.message, true, "profileview");
         } else {
@@ -180,22 +181,23 @@ keepMsg = function() {
 	var txt = serverstub.getUserMessagesByToken(token);
 	var mess = serverstub.getUserMessagesByToken(token).data;
 
+
 	if (messageArea && txt) {
-        if(txt.success == true) {
-        	
-        	while (document.getElementById("wall").firstChild) {
+		/* if the textarea isn't empty and the user posted messages */
+        
+		//Removing all the messages ...
+        while (document.getElementById("wall").firstChild) {
     			document.getElementById("wall").removeChild(document.getElementById("wall").firstChild);
-			}
-        	
-        	for	(j = 0; j < mess.length; j++) {
-	            var para = document.createElement("p");
-	            var msg = document.createTextNode("'"+mess[j].content+"' written by "+mess[j].writer);
-	            para.appendChild(msg);
-	          	document.getElementById("wall").appendChild(para);
+		}
+        
+        //...and rewriting them all	to be sure they're all in the wall
+        for	(j = 0; j < mess.length; j++) {
+        	var para = document.createElement("p");
+	        var msg = document.createTextNode("'"+mess[j].content+"' written by "+mess[j].writer);
+	        para.appendChild(msg);
+	        document.getElementById("wall").appendChild(para);
         	}
-        } else {
-            displayMsg(txt.message, true, "profileview");
-        }
+
     } else {
         displayMsg("ERROR!", false, "profileview");
     }
