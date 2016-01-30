@@ -114,8 +114,8 @@ p {
 #tabsContainer {
     position: relative;
     text-align: center;
-    padding-top: 100px;
-    height: 57px;
+    padding-top: 25px;
+    height: 58px;
 }
 
 #panel {
@@ -126,6 +126,19 @@ p {
     width: 364px;
     height: 300px;
     text-align: center;
+    background-color: white;
+}
+
+#wall {
+    position: relative;
+    margin-top: 150px;
+    margin-left: -72px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    width: 510px;
+    height: 100px;
+    overflow: auto;
+    border: 1px solid black;
     background-color: white;
 }
 
@@ -198,7 +211,7 @@ ul {
     font-weight: bold;
     color: black;
     border: 1px solid red;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 #displayMsgProfile {
@@ -219,4 +232,43 @@ ul {
     font-style: italic;
     font-size: 15px;
     font-weight: bold;
+}
+
+#info, #postTitle {
+    text-align: left;
+    font-style: italic;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top : 5px;
+    margin-bottom: 20px;
+}
+
+#postTitle {
+    padding-top: 20px;
+}
+
+#mess {
+    float: left;
+    height: 75px;
+    width: 355px;
+    padding-top: 0px;
+}
+
+#mail, #finame, #faname, #genderUser, #cityUser, #countryUser {
+    text-align: left;
+    font-size: 12px;
+    height:5px;
+    font-weight: normal;   
+}
+
+p span {
+    text-align: right;
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+#postButton {
+    width: auto;
+    height: auto;
 }

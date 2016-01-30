@@ -5,6 +5,7 @@
  */
 
 var sizeMinPwd = 6;
+var maxSizeMsg = 300;
 
 displayView = function() {
 	if (localStorage.getItem("token") == null) {
@@ -16,6 +17,9 @@ displayView = function() {
 
 window.onload = function() {
 	displayView();
+	if (localStorage.getItem("token") != null) {
+		displayInfo();
+	}	
 };
 
 logIn = function() {
@@ -121,4 +125,44 @@ changePwd = function() {
 	} else {
 		displayMsg("Error: password must be at least 6 characters long", false, "profileview");
 	}
+};
+
+displayInfo = function() {
+	var token = localStorage.getItem("token");
+	var servStubInfo = serverstub.getUserDataByToken(token);
+
+	document.getElementById("mail-span").innerHTML = servStubInfo.data.email;
+	document.getElementById("firstname-span").innerHTML = servStubInfo.data.firstname;
+	document.getElementById("familyname-span").innerHTML = servStubInfo.data.familyname;
+	document.getElementById("gender-span").innerHTML = servStubInfo.data.gender;	
+	document.getElementById("city-span").innerHTML = servStubInfo.data.city;
+	document.getElementById("country-span").innerHTML = servStubInfo.data.country;
+};
+
+/* to -> false when we send a message to ourselves */
+send = function(msg,from,to) {
+    var token = localStorage.getItem("token");
+    var servStubPost = serverstub.postMessage(token,msg,from);
+	if(servStubPost.success == true) {
+		document.getElementById("mess").value = "";
+		displayMsg(servStubPost.message, true, "profileview");
+	} else {
+        displayMsg(servStubPost.message, false, "profileview");
+    }
+};
+
+postMsg = function() {
+	var token = localStorage.getItem("token");
+	var msg = document.getElementById("mess").value;
+
+    if((msg.length <= maxSizeMsg) && (msg.length > 0)) {
+        var user = serverstub.getUserDataByToken(token);
+    	if(user.success == true) {
+            send(msg,user.data.email,false);
+        }
+    } else {
+       	displayMsg("Message too long or too short",false,"profileview");
+    }
+
+
 };

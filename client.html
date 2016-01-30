@@ -71,7 +71,24 @@
 			</div>
 
 			<div id="panel">
-			    <div id="home-panel">Home panel</div>
+			    <div id="home-panel">
+			    		<p id="info">Personal information :</p>
+				    		<p id="mail">Email: <span id="mail-span"></span></p>
+				    		<p id="finame">First name: <span id="firstname-span"></span></p>
+				    		<p id="faname">Family Name: <span id="familyname-span"></span></p>
+				    		<p id="genderUser">Gender: <span id="gender-span"></span></p>
+				    		<p id="cityUser">City: <span id="city-span"></span></p>
+				    		<p id="countryUser">Country: <span id="country-span"></span></p>
+
+				    		<form id ="postmessage" onsubmit="postMsg(); return false;" method="post">
+					    		<p id="postTitle">Post a message to your own wall :</p>    		
+								<textarea id="mess" rows="4" cols="54"></textarea>
+								<input id="postButton" type="submit" value="Post!">
+							</form>
+
+							<div id="wall"></div>
+			    </div>
+
 			    <div id="browse-panel">Browse panel</div>
 
 			    <div id="account-panel">
