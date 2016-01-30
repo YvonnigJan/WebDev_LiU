@@ -268,7 +268,13 @@ p span {
     margin-left: 10px;
 }
 
-#postButton {
+#postButton, #reloadButton {
     width: auto;
     height: auto;
+}
+
+#reloadButton {
+    position: relative;
+    margin-top: -50px;
+    margin-right: 105px;
 }

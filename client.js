@@ -19,6 +19,7 @@ window.onload = function() {
 	displayView();
 	if (localStorage.getItem("token") != null) {
 		displayInfo();
+		keepMsg();
 	}	
 };
 
@@ -139,30 +140,63 @@ displayInfo = function() {
 	document.getElementById("country-span").innerHTML = servStubInfo.data.country;
 };
 
-/* to -> false when we send a message to ourselves */
+/* stores the message in the array
+to -> false : no other recipient */
 send = function(msg,from,to) {
+    
     var token = localStorage.getItem("token");
     var servStubPost = serverstub.postMessage(token,msg,from);
 	if(servStubPost.success == true) {
 		document.getElementById("mess").value = "";
 		displayMsg(servStubPost.message, true, "profileview");
+        keepMsg();
 	} else {
         displayMsg(servStubPost.message, false, "profileview");
     }
 };
 
-postMsg = function() {
-	var token = localStorage.getItem("token");
-	var msg = document.getElementById("mess").value;
+msgOnWall = function() {
 
-    if((msg.length <= maxSizeMsg) && (msg.length > 0)) {
-        var user = serverstub.getUserDataByToken(token);
-    	if(user.success == true) {
-            send(msg,user.data.email,false);
+	var token = localStorage.getItem("token");
+
+	var msg = document.getElementById("mess").value;
+    if ((msg.length <= maxSizeMsg) && (msg.length > 0)) {
+        var servStubData = serverstub.getUserDataByToken(token);
+    	if (servStubData.success == true) {
+            send(msg, servStubData.data.email, false);
+            displayMsg(servStubData.message, true, "profileview");
+        } else {
+            displayMsg(servStubData.message, false, "profileview");
         }
     } else {
-       	displayMsg("Message too long or too short",false,"profileview");
+        displayMsg("Message too short or too long", false, "profileview");
     }
+};
 
+keepMsg = function() {
 
+	var messageArea = document.getElementById("mess");
+	var token = localStorage.getItem("token");
+	var txt = serverstub.getUserMessagesByToken(token);
+	var mess = serverstub.getUserMessagesByToken(token).data;
+
+	if (messageArea && txt) {
+        if(txt.success == true) {
+        	
+        	while (document.getElementById("wall").firstChild) {
+    			document.getElementById("wall").removeChild(document.getElementById("wall").firstChild);
+			}
+        	
+        	for	(j = 0; j < mess.length; j++) {
+	            var para = document.createElement("p");
+	            var msg = document.createTextNode("'"+mess[j].content+"' written by "+mess[j].writer);
+	            para.appendChild(msg);
+	          	document.getElementById("wall").appendChild(para);
+        	}
+        } else {
+            displayMsg(txt.message, true, "profileview");
+        }
+    } else {
+        displayMsg("ERROR!", false, "profileview");
+    }
 };

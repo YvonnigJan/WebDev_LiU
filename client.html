@@ -80,13 +80,17 @@
 				    		<p id="cityUser">City: <span id="city-span"></span></p>
 				    		<p id="countryUser">Country: <span id="country-span"></span></p>
 
-				    		<form id ="postmessage" onsubmit="postMsg(); return false;" method="post">
+				    		
 					    		<p id="postTitle">Post a message to your own wall :</p>    		
 								<textarea id="mess" rows="4" cols="54"></textarea>
-								<input id="postButton" type="submit" value="Post!">
-							</form>
+								<input id="postButton" type="submit" value="Post!" onClick="msgOnWall()">
+							
 
-							<div id="wall"></div>
+							<div id="wall">
+							</div>
+
+							<input id="reloadButton" type="submit" value="Reload your wall" onClick="keepMsg()">
+
 			    </div>
 
 			    <div id="browse-panel">Browse panel</div>
