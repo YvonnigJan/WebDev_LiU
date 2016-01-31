@@ -93,7 +93,27 @@
 
 			    </div>
 
-			    <div id="browse-panel">Browse panel</div>
+			    <div id="browse-panel">
+			    	<form id="searchForm" onsubmit="searchSomeone(); return false;" method="post">
+			    		<p id="search">Who are you looking for ?</p>
+			    		<label for="search-label">Email</label><input type="email" id="mailSearch" name="mailSearch"><br />
+			    		<input id="searchButton" type="submit" value="Search!" onClick="searchSomeone()">
+			    	</form>
+
+			    	<div id="userPage">
+			    		<div id="infoUser">
+			    			<p id="mail">Email: <span id="mail-span-o"></span></p>
+				    		<p id="finame">First name: <span id="firstname-span-o"></span></p>
+				    		<p id="faname">Family Name: <span id="familyname-span-o"></span></p>
+				    		<p id="genderUser">Gender: <span id="gender-span-o"></span></p>
+				    		<p id="cityUser">City: <span id="city-span-o"></span></p>
+				    		<p id="countryUser">Country: <span id="country-span-o"></span></p>
+				    	</div>
+
+				    	<div id="wallUser"></div>
+			    	</div>
+			    
+			    </div>
 
 			    <div id="account-panel">
 			    	<form id="changePwdForm" onsubmit="changePwd(); return false;" method="post">
@@ -101,6 +121,7 @@
 			    		<label for="oldPwd-label">Current password</label><input type="password" id="oldPwd" name="oldPwd" required><br />
 			    		<label for="chgPwd-label">Change your password</label><input type="password" id="chgPwd" name="chgPwd" required><br/>
 			    		<input id="chgButton" type="submit" value="Change now!">
+			    	</form>
 			    		<input id="logOutButton" type="submit" value="LOG OUT" onClick="logOut()">
 			    </div>
 			</div>

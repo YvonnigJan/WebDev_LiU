@@ -112,15 +112,17 @@ p {
 }
 
 #tabsContainer {
-    position: relative;
+    position: absolute;
     text-align: center;
-    padding-top: 25px;
+    padding-top: 50px;
+    margin-left: 444px;
     height: 58px;
 }
 
 #panel {
-    position: relative;
+    position: absolute;
     margin-left: 444px;
+    margin-top: 108px;
     border: 2px solid black;
     padding: 15px;
     width: 364px;
@@ -177,7 +179,7 @@ ul {
     display: none;
 }
 
-#changePwdForm label {
+#changePwdForm label, #searchForm label {
     display: inline;
     width: 150px;
     height: 0px;
@@ -215,19 +217,18 @@ ul {
 }
 
 #displayMsgProfile {
-    width: auto;
+    width: 150px;
     height: auto;
-    overflow: auto;
+    margin-top: -35px;
     padding: 5px;
-    text-align: center;
     font-weight: bold;
     font-size: 12px;
     position: absolute;
-    margin-top: -20px;
-    margin-left: 697px;
+    display: inline;
+    margin-left: 330px;
 }
 
-#changePwd {
+#changePwd, #search {
     text-align: left;
     font-style: italic;
     font-size: 15px;
@@ -268,7 +269,7 @@ p span {
     margin-left: 10px;
 }
 
-#postButton, #reloadButton {
+#postButton, #reloadButton, #searchButton {
     width: auto;
     height: auto;
 }
@@ -277,4 +278,11 @@ p span {
     position: relative;
     margin-top: -50px;
     margin-right: 105px;
+}
+
+#mailSearch {
+    width: 150px;
+    height: 14px;
+    float: right;
+    clear: both;
 }

@@ -95,6 +95,7 @@ displayMsg = function(message,success,view) {
 	else if (success == true) {
 		errFrame.style.border = "1px solid black";
 	}
+
 };
 
 /* displays the panel of the tab parameter */
@@ -111,6 +112,12 @@ tabClicked = function(tab) {
 		document.getElementById("browse-panel").style.display = "block";
 		document.getElementById("account-panel").style.display = "none";
 		document.getElementById("home-panel").style.display = "none";
+		document.getElementById("userPage").style.display = "none";
+
+		if (document.getElementById("searchForm").style.display == "none") {
+			document.getElementById("searchForm").style.display = "block";
+			document.getElementById("mailSearch").value = "";
+		}
 	}
 };
 
@@ -179,11 +186,11 @@ keepMsg = function() {
 	var messageArea = document.getElementById("mess");
 	var token = localStorage.getItem("token");
 	var txt = serverstub.getUserMessagesByToken(token);
-	var mess = serverstub.getUserMessagesByToken(token).data;
+	var mess = txt.data;
 
 
 	if (messageArea && txt) {
-		/* if the textarea isn't empty and the user posted messages */
+		/* if the textarea isn't empty and the user has posted messages */
         
 		//Removing all the messages ...
         while (document.getElementById("wall").firstChild) {
@@ -199,6 +206,39 @@ keepMsg = function() {
         	}
 
     } else {
-        displayMsg("ERROR!", false, "profileview");
+        displayMsg("Error", false, "profileview");
     }
 };
+
+displayInfoOther = function(email) {
+	var token = localStorage.getItem("token");
+	var servStubInfo = serverstub.getUserDataByEmail(token,email);
+
+	document.getElementById("mail-span-o").innerHTML = servStubInfo.data.email;
+	document.getElementById("firstname-span-o").innerHTML = servStubInfo.data.firstname;
+	document.getElementById("familyname-span-o").innerHTML = servStubInfo.data.familyname;
+	document.getElementById("gender-span-o").innerHTML = servStubInfo.data.gender;	
+	document.getElementById("city-span-o").innerHTML = servStubInfo.data.city;
+	document.getElementById("country-span-o").innerHTML = servStubInfo.data.country;
+};
+
+loadUserPage = function() {
+	document.getElementById("searchForm").style.display = "none";
+	document.getElementById("userPage").style.display = "block";
+};
+
+searchSomeone = function() { 
+	var token = localStorage.getItem("token");
+	var email = document.getElementById("mailSearch").value;
+	var servStubData = serverstub.getUserMessagesByEmail(token, email);
+	if (servStubData.success == true) {
+		displayMsg(servStubData.message, true, "profileview");
+		displayInfoOther(email);
+		loadUserPage();
+	} else {
+		displayMsg(servStubData.message, false, "profileview");
+		document.getElementById("searchForm").style.display = "block";
+		document.getElementById("userPage").style.display = "none";
+	}
+};
+
