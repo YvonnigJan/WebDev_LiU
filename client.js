@@ -77,6 +77,7 @@ signUp = function() {
 	}
 };
 
+
 /********************** Shows an error or a success message **********************/
 //message : the message which will be displayed,
 //success : boolean (true : info message / false : error message),
@@ -84,11 +85,12 @@ signUp = function() {
 displayMsg = function(message,success,view) {
 
 	var errFrame = document.getElementById("displayMsg");
-	
+
 	if (view == "profileview") {
 		errFrame = document.getElementById("displayMsgProfile");
 	}
 
+	errFrame.style.display = "block";
 	errFrame.innerHTML = message;
 	errFrame.style.backgroundColor = "white";
 	
@@ -99,6 +101,10 @@ displayMsg = function(message,success,view) {
 	else if (success == true) {
 		errFrame.style.border = "1px solid black";
 	}
+
+	setTimeout(function () {
+		document.getElementById("displayMsgProfile").style.display = "none";
+	}, '1000');
 
 };
 
