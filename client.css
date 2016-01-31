@@ -303,3 +303,7 @@ p span {
     float: right;
     clear: both;
 }
+
+#wall p, #wallUser p {
+    border: 1px dotted black;
+}

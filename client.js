@@ -103,7 +103,7 @@ displayMsg = function(message,success,view) {
 	}
 
 	setTimeout(function () {
-		document.getElementById("displayMsgProfile").style.display = "none";
+		errFrame.style.display = "none";
 	}, '1000');
 
 };
@@ -316,4 +316,5 @@ searchSomeone = function() {
 loadUserPage = function() {
 	document.getElementById("searchForm").style.display = "none";
 	document.getElementById("userPage").style.display = "block";
+	keepMsgOther();
 };
