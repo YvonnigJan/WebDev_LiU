@@ -146,7 +146,7 @@ p {
 
 #wallUser {
     position: relative;
-    margin-top: 235px;
+    margin-top: 150px;
     margin-left: -72px;
     border-radius: 10px;
     width: 510px;
@@ -260,7 +260,7 @@ ul {
     padding-top: 20px;
 }
 
-#mess {
+#mess, #messUser {
     float: left;
     height: 75px;
     width: 355px;
@@ -294,12 +294,12 @@ p span {
 
 #reloadButtonUser {
     position: relative;
-    margin-right: 105px;
+    margin-right: 115px;
 }
 
 #mailSearch {
     width: 150px;
-    height: 14px;
+    height: 15px;
     float: right;
     clear: both;
 }

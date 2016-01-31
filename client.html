@@ -102,16 +102,22 @@
 
 			    	<div id="userPage">
 			    		<div id="infoUser">
+			    			<p id="info">Personal information :</p>
 			    			<p id="mail">Email: <span id="mail-span-o"></span></p>
 				    		<p id="finame">First name: <span id="firstname-span-o"></span></p>
 				    		<p id="faname">Family Name: <span id="familyname-span-o"></span></p>
 				    		<p id="genderUser">Gender: <span id="gender-span-o"></span></p>
 				    		<p id="cityUser">City: <span id="city-span-o"></span></p>
 				    		<p id="countryUser">Country: <span id="country-span-o"></span></p>
+
+				    		<p id="postTitle">Post a message to the wall :</p>    		
+								<textarea id="messUser" rows="4" cols="54"></textarea>
+								<input id="postButton" type="submit" value="Post!" onClick="msgOnOtherWall()">
+
 				    	</div>
 
 				    	<div id="wallUser"></div>
-				    	<input id="reloadButtonUser" type="submit" value="Reload the wall">
+				    	<input id="reloadButtonUser" type="submit" value="Reload the wall" onClick="keepMsgOther()">
 
 			    	</div>
 			    

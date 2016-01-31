@@ -23,6 +23,8 @@ window.onload = function() {
 	}	
 };
 
+/********************** Login, Sign up, Log out **********************/
+
 logIn = function() {
 	var username = document.getElementById("emailLog").value;
 	var password = document.getElementById("passwordLog").value;
@@ -75,8 +77,10 @@ signUp = function() {
 	}
 };
 
-/* message (string) : the message to be shown
-success (boolean) */
+/********************** Shows an error or a success message **********************/
+//message : the message which will be displayed,
+//success : boolean (true : info message / false : error message),
+//view : in which view the message will be displayed
 displayMsg = function(message,success,view) {
 
 	var errFrame = document.getElementById("displayMsg");
@@ -98,7 +102,7 @@ displayMsg = function(message,success,view) {
 
 };
 
-/* displays the panel of the tab parameter */
+/********************** Displays the panel of the tab parameter **********************/
 tabClicked = function(tab) {
 	if (tab == 'home') {
 		document.getElementById("home-panel").style.display = "block";
@@ -121,7 +125,7 @@ tabClicked = function(tab) {
 	}
 };
 
-/* enables a user to change his password */
+/********************** Enables a user to change his password **********************/
 changePwd = function() {
 	var token = localStorage.getItem("token");
 	var oldPassword = document.getElementById("oldPwd").value;
@@ -135,6 +139,7 @@ changePwd = function() {
 	}
 };
 
+/********************** Displays all the info about the user who is logged in **********************/
 displayInfo = function() {
 	var token = localStorage.getItem("token");
 	var servStubInfo = serverstub.getUserDataByToken(token);
@@ -147,32 +152,33 @@ displayInfo = function() {
 	document.getElementById("country-span").innerHTML = servStubInfo.data.country;
 };
 
-/* stores the message in the array
-to -> false : no other recipient */
-send = function(msg,from,to) {
+/********************** Stores the "msg" send by "from" in the array **********************/
+send = function(msg,from) {
     
     var token = localStorage.getItem("token");
     var servStubPost = serverstub.postMessage(token,msg,from);
 	if(servStubPost.success == true) {
 		document.getElementById("mess").value = "";
 		displayMsg(servStubPost.message, true, "profileview");
-        keepMsg();
+        keepMsg(); 
 	} else {
         displayMsg(servStubPost.message, false, "profileview");
     }
 };
 
+/********************** Enables a user to post a message to his own wall **********************/
 msgOnWall = function() {
 
 	var token = localStorage.getItem("token");
-
 	var msg = document.getElementById("mess").value;
+
     if ((msg.length <= maxSizeMsg) && (msg.length > 0)) {
+        
         var servStubData = serverstub.getUserDataByToken(token);
+
     	if (servStubData.success == true) {
-    		//User data is retrieved :-)
-            send(msg, servStubData.data.email, false);
-            displayMsg(servStubData.message, true, "profileview");
+            send(msg, servStubData.data.email);
+        	displayMsg(servStubData.message, true, "profileview");
         } else {
             displayMsg(servStubData.message, false, "profileview");
         }
@@ -181,14 +187,15 @@ msgOnWall = function() {
     }
 };
 
+/********************** Updates the wall to
+              make sure that the messages will appear within it **********************/
 keepMsg = function() {
 
 	var messageArea = document.getElementById("mess");
 	var token = localStorage.getItem("token");
 	var txt = serverstub.getUserMessagesByToken(token);
 	var mess = txt.data;
-
-
+	
 	if (messageArea && txt) {
 		/* if the textarea isn't empty and the user has posted messages */
         
@@ -196,20 +203,82 @@ keepMsg = function() {
         while (document.getElementById("wall").firstChild) {
     			document.getElementById("wall").removeChild(document.getElementById("wall").firstChild);
 		}
-        
         //...and rewriting them all	to be sure they're all in the wall
         for	(j = 0; j < mess.length; j++) {
         	var para = document.createElement("p");
 	        var msg = document.createTextNode("'"+mess[j].content+"' written by "+mess[j].writer);
 	        para.appendChild(msg);
 	        document.getElementById("wall").appendChild(para);
-        	}
+        }
 
     } else {
         displayMsg("Error", false, "profileview");
     }
 };
 
+/********************** Similar methods to perform actions on other walls **********************/
+sendUser = function(msg,from) {
+	var token = localStorage.getItem("token");
+    var servStubPost = serverstub.postMessage(token,msg,from);
+	if(servStubPost.success == true) {
+		document.getElementById("messUser").value = "";
+		displayMsg(servStubPost.message, true, "profileview");
+        keepMsgOther(); 
+	} else {
+        displayMsg(servStubPost.message, false, "profileview");
+    }
+};
+
+
+msgOnOtherWall = function() {
+	var token = localStorage.getItem("token");
+	var msg = document.getElementById("messUser").value;
+	var email = document.getElementById("mail-span-o").innerHTML;
+
+    if ((msg.length <= maxSizeMsg) && (msg.length > 0)) {
+
+        var servStubData = serverstub.getUserDataByEmail(token,email);
+
+    	if (servStubData.success == true) {
+            sendUser(msg, servStubData.data.email);
+        	displayMsg(servStubData.message, true, "profileview");
+        } else {
+            displayMsg(servStubData.message, false, "profileview");
+        }
+    } else {
+        displayMsg("Message too short or too long", false, "profileview");
+    }
+};
+
+keepMsgOther = function() {
+
+	var messageArea = document.getElementById("messUser");
+	var token = localStorage.getItem("token");
+	var email = document.getElementById("mail-span-o").innerHTML;
+	var txt = serverstub.getUserMessagesByEmail(token,email);
+	var mess = txt.data;
+	
+	if (messageArea && txt) {
+		/* if the textarea isn't empty and the user has posted messages */
+        
+		//Removing all the messages ...
+        while (document.getElementById("wallUser").firstChild) {
+    			document.getElementById("wallUser").removeChild(document.getElementById("wallUser").firstChild);
+		}
+        //...and rewriting them all	to be sure they're all in the wall
+        for	(j = 0; j < mess.length; j++) {
+        	var para = document.createElement("p");
+	        var msg = document.createTextNode("'"+mess[j].content+"' written by "+mess[j].writer);
+	        para.appendChild(msg);
+	        document.getElementById("wallUser").appendChild(para);
+        }
+
+    } else {
+        displayMsg("Error", false, "profileview");
+    }
+};
+
+/********************** Builds the info of an other user **********************/
 displayInfoOther = function(email) {
 	var token = localStorage.getItem("token");
 	var servStubInfo = serverstub.getUserDataByEmail(token,email);
@@ -222,17 +291,12 @@ displayInfoOther = function(email) {
 	document.getElementById("country-span-o").innerHTML = servStubInfo.data.country;
 };
 
-loadUserPage = function() {
-	document.getElementById("searchForm").style.display = "none";
-	document.getElementById("userPage").style.display = "block";
-};
-
+/********************** Enables to search for another user's wall **********************/
 searchSomeone = function() { 
 	var token = localStorage.getItem("token");
 	var email = document.getElementById("mailSearch").value;
 	var servStubData = serverstub.getUserMessagesByEmail(token, email);
 	if (servStubData.success == true) {
-		displayMsg(servStubData.message, true, "profileview");
 		displayInfoOther(email);
 		loadUserPage();
 	} else {
@@ -242,3 +306,8 @@ searchSomeone = function() {
 	}
 };
 
+/********************** Enables to display all the info of another user **********************/
+loadUserPage = function() {
+	document.getElementById("searchForm").style.display = "none";
+	document.getElementById("userPage").style.display = "block";
+};
