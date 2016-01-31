@@ -144,6 +144,18 @@ p {
     background-color: white;
 }
 
+#wallUser {
+    position: relative;
+    margin-top: 235px;
+    margin-left: -72px;
+    border-radius: 10px;
+    width: 510px;
+    height: 100px;
+    overflow: auto;
+    border: 1px solid black;
+    background-color: white;
+}
+
 ul {
     list-style-type: none;
     border: 1px solid black;
@@ -269,7 +281,7 @@ p span {
     margin-left: 10px;
 }
 
-#postButton, #reloadButton, #searchButton {
+#postButton, #reloadButton, #reloadButtonUser, #searchButton {
     width: auto;
     height: auto;
 }
@@ -277,6 +289,11 @@ p span {
 #reloadButton {
     position: relative;
     margin-top: -50px;
+    margin-right: 105px;
+}
+
+#reloadButtonUser {
+    position: relative;
     margin-right: 105px;
 }
 
