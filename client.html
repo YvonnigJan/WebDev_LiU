@@ -83,13 +83,13 @@
 				    		
 					    		<p id="postTitle">Post a message to your own wall :</p>    		
 								<textarea id="mess" rows="4" cols="54"></textarea>
-								<input id="postButton" type="submit" value="Post!" onClick="msgOnWall()">
+								<input id="postButton" type="submit" value="Post!" onClick="msgOnWall('mess')">
 							
 
 							<div id="wall">
 							</div>
 
-							<input id="reloadButton" type="submit" value="Reload your wall" onClick="keepMsg()">
+							<input id="reloadButton" type="submit" value="Reload your wall" onClick="keepMsg('mess')">
 
 			    </div>
 
@@ -112,12 +112,12 @@
 
 				    		<p id="postTitle">Post a message to the wall :</p>    		
 								<textarea id="messUser" rows="4" cols="54"></textarea>
-								<input id="postButton" type="submit" value="Post!" onClick="msgOnOtherWall()">
+								<input id="postButton" type="submit" value="Post!" onClick="msgOnWall('messUser')">
 
 				    	</div>
 
 				    	<div id="wallUser"></div>
-				    	<input id="reloadButtonUser" type="submit" value="Reload the wall" onClick="keepMsgOther()">
+				    	<input id="reloadButtonUser" type="submit" value="Reload the wall" onClick="keepMsg('messUser')">
 
 			    	</div>
 			    
