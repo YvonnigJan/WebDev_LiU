@@ -37,8 +37,8 @@ body {
 #signUp {
     font-size: 12px;
     width: 250px;
-    height: 280px;
-    margin-top: 12px;
+    height: 282px;
+    margin-top: 10px;
     background-color: white;
     border: 1px black solid;
 }
@@ -201,7 +201,7 @@ ul {
     padding-top: 5px;
 }
 
-#oldPwd, #chgPwd { 
+#oldPwd, #chgPwd, #chgRepPwd {
     width: 120px;
     height: 12px;
     float: right;
@@ -217,7 +217,7 @@ ul {
 
 #logOutButton {
     position: relative;
-    margin-top: 135px;
+    margin-top: 115px;
     text-align: center;
     padding: 15px;
     width: 365px;
@@ -306,4 +306,17 @@ p span {
 
 #wall p, #wallUser p {
     border: 1px dotted black;
+}
+
+#displayMsgSignUp {
+    width: auto;
+    height: auto;
+    overflow: auto;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    position: absolute;
+    margin-top: 415px;
+    margin-left: 500px;
 }
