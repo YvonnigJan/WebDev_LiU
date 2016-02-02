@@ -52,7 +52,87 @@
     	</script>
 
     	<script id="profileview" type="text/view">
-    		<h1>PROFILE VIEW</h1>
+    		<div id="tabsContainer">
+    			<div id="displayMsgProfile"></div>
+
+    			<ul>
+    				<li>
+			            <label id="home" onClick="tabClicked('home')">Home</label>
+			        </li>
+
+			        <li>
+			            <label id="browse" onClick="tabClicked('browse')">Browse</label>
+			        </li>
+
+			        <li>
+			            <label id="account" onClick="tabClicked('account')">Account</label>
+			        </li>
+			    </ul>
+			</div>
+
+			<div id="panel">
+			    <div id="home-panel">
+			    		<p id="info">Personal information :</p>
+				    		<p id="mail">Email: <span id="mail-span"></span></p>
+				    		<p id="finame">First name: <span id="firstname-span"></span></p>
+				    		<p id="faname">Family Name: <span id="familyname-span"></span></p>
+				    		<p id="genderUser">Gender: <span id="gender-span"></span></p>
+				    		<p id="cityUser">City: <span id="city-span"></span></p>
+				    		<p id="countryUser">Country: <span id="country-span"></span></p>
+
+				    		
+					    		<p id="postTitle">Post a message to your own wall :</p>    		
+								<textarea id="mess" rows="4" cols="54"></textarea>
+								<input id="postButton" type="submit" value="Post!" onClick="msgOnWall('mess')">
+							
+
+							<div id="wall">
+							</div>
+
+							<input id="reloadButton" type="submit" value="Reload your wall" onClick="keepMsg('mess')">
+
+			    </div>
+
+			    <div id="browse-panel">
+			    	<form id="searchForm" onsubmit="searchSomeone(); return false;" method="post">
+			    		<p id="search">Who are you looking for ?</p>
+			    		<label for="search-label">Email</label><input type="email" id="mailSearch" name="mailSearch"><br />
+			    		<input id="searchButton" type="submit" value="Search!" onClick="searchSomeone()">
+			    	</form>
+
+			    	<div id="userPage">
+			    		<div id="infoUser">
+			    			<p id="info">Personal information :</p>
+			    			<p id="mail">Email: <span id="mail-span-o"></span></p>
+				    		<p id="finame">First name: <span id="firstname-span-o"></span></p>
+				    		<p id="faname">Family Name: <span id="familyname-span-o"></span></p>
+				    		<p id="genderUser">Gender: <span id="gender-span-o"></span></p>
+				    		<p id="cityUser">City: <span id="city-span-o"></span></p>
+				    		<p id="countryUser">Country: <span id="country-span-o"></span></p>
+
+				    		<p id="postTitle">Post a message to the wall :</p>    		
+								<textarea id="messUser" rows="4" cols="54"></textarea>
+								<input id="postButton" type="submit" value="Post!" onClick="msgOnWall('messUser')">
+
+				    	</div>
+
+				    	<div id="wallUser"></div>
+				    	<input id="reloadButtonUser" type="submit" value="Reload the wall" onClick="keepMsg('messUser')">
+
+			    	</div>
+			    
+			    </div>
+
+			    <div id="account-panel">
+			    	<form id="changePwdForm" onsubmit="changePwd(); return false;" method="post">
+			    		<p id="changePwd">Change your password</p>
+			    		<label for="oldPwd-label">Current password</label><input type="password" id="oldPwd" name="oldPwd" required><br />
+			    		<label for="chgPwd-label">Change your password</label><input type="password" id="chgPwd" name="chgPwd" required><br/>
+			    		<input id="chgButton" type="submit" value="Change now!">
+			    	</form>
+			    		<input id="logOutButton" type="submit" value="LOG OUT" onClick="logOut()">
+			    </div>
+			</div>
     	</script>
 </head>
 
