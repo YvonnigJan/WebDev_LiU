@@ -64,16 +64,16 @@ signUp = function() {
 		'familyname': document.getElementById("familyName").value,
 		'gender': genderSelected,
 		'city': document.getElementById("city").value,
-		'country': document.getElementById("country").value,
+		'country': document.getElementById("country").value
 	};
 
 	if (!(newUser.password.length < sizeMinPwd) && (newUser.password == document.getElementById("repeatPassword").value)) {
 		var servStubSign = serverstub.signUp(newUser);
-		displayMsg(servStubSign.message,true,"welcomeview");
+		displayMsgSign(servStubSign.message,true);
 	} else if (newUser.password != document.getElementById("repeatPassword").value) {
-		displayMsg("Error: both passwords must be identical", false, "welcomeview");
+        displayMsgSign("Error: both passwords must be identical", false);
 	} else if (newUser.password.length < sizeMinPwd) {
-		displayMsg("Error: password must be at least 6 characters long", false, "welcomeview");
+        displayMsgSign("Error: password must be at least 6 characters long", false);
 	}
 };
 
@@ -104,9 +104,10 @@ displayMsg = function(message,success,view) {
 
 	setTimeout(function () {
 		errFrame.style.display = "none";
-	}, '1000');
+	}, '3000');
 
 };
+
 
 /********************** Displays the panel of the tab parameter **********************/
 tabClicked = function(tab) {
@@ -139,7 +140,12 @@ changePwd = function() {
 
 	if (newPassword.length >= sizeMinPwd) {
 		var servStubChg = serverstub.changePassword(token, oldPassword, newPassword);
-		displayMsg(servStubChg.message, true, "profileview");
+
+        if (document.getElementById("chgPwd").value != document.getElementById("chgRepPwd").value) {
+            displayMsg("Error: both passwords must be identical", false, "profileview");
+        } else {
+            displayMsg(servStubChg.message, true, "profileview");
+        }
 	} else {
 		displayMsg("Error: password must be at least 6 characters long", false, "profileview");
 	}
@@ -279,4 +285,27 @@ loadUserPage = function() {
 	document.getElementById("searchForm").style.display = "none";
 	document.getElementById("userPage").style.display = "block";
 	keepMsg("messUser");
+};
+
+/********************** Displays message near the login form **********************/
+displayMsgSign = function(message,success) {
+
+	var	errFrame = document.getElementById("displayMsgSignUp");
+
+	errFrame.style.display = "block";
+	errFrame.innerHTML = message;
+	errFrame.style.backgroundColor = "white";
+
+	if (success == false) {
+		errFrame.style.border = "1px solid red";
+	}
+
+	else if (success == true) {
+		errFrame.style.border = "1px solid black";
+	}
+
+	setTimeout(function () {
+		errFrame.style.display = "none";
+	}, '3000');
+
 };
